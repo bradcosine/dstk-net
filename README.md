@@ -1,7 +1,7 @@
 dstk-net
 ========
 
-A c# wrapper for the [Data Science Toolkit](http://www.datasciencetoolkit.org/) [code](https://github.com/petewarden/dstk) APIs. Only street2coordinates has been implemented thus far so there is much more work to do.
+A c# wrapper for the [Data Science Toolkit](http://www.datasciencetoolkit.org/) APIs. Only street2coordinates has been implemented thus far so there is much more work to do.
 
 Uses the [fastest JSON serializer for .NET](http://www.servicestack.net/mythz_blog/?p=344) which is the ServiceStack JsonSerializer in the [ServiceStack.Text](https://github.com/ServiceStack/ServiceStack.Text) project.
 
