@@ -10,5 +10,7 @@ Example usage:
 DSTK dstk = new DSTK();
 dstk.DSTK_API_BASE = @"http://your.dstk.instance/";
 var results = dstk.street2coordinates("8852 W. Sunset Blvd, Los Angeles, CA 90069");
-Console.WriteLine(results.location.First().street_address);
+Console.WriteLine("latitude: " +results.location.First().latitude);
+Console.WriteLine("longitude: " +results.location.First().longitude);
+
 ```
