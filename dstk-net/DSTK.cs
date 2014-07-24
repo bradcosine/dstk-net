@@ -27,8 +27,6 @@ namespace dstk.net {
 
             var json = svcUri.GetStringFromUrl(acceptContentType: "application/json");
 
-            var result = JsonObject.Parse(json);
-
             var alt = JsonObject.Parse(json).ConvertTo(x => new AddressLocation
             {
                 address = x.Keys.FirstOrDefault() ?? "",
@@ -50,6 +48,35 @@ namespace dstk.net {
             });
 
             return alt;
+        }
+
+        public List<AddressLocation> street2coordinates(string[] addrs)
+        {
+            var svcUri = "{0}/street2coordinates".Fmt(DSTK_API_BASE);
+
+            Console.WriteLine(addrs.ToJson());
+
+            var response = svcUri.PostStringToUrl(addrs.ToJson(), contentType: "application/json");
+
+            var result = response.FromJson<Dictionary<string, Location>>();
+
+            Console.WriteLine("result:");
+            Console.WriteLine(result.ToJson());
+
+            List<AddressLocation> al = new List<AddressLocation>();
+
+            foreach (var d in result)
+            {
+                var thisAddr = new AddressLocation();
+
+                thisAddr.address = d.Key;
+                thisAddr.location = new List<Location>();
+                thisAddr.location.Add(d.Value);
+
+                al.Add(thisAddr);
+            }
+
+            return al;
         }
     }
 
