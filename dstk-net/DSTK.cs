@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using ServiceStack;
 using ServiceStack.Text;
 
 namespace dstk.net {
@@ -11,7 +12,6 @@ namespace dstk.net {
     /// </summary>
     public class DSTK
     {
-
         private string _DSTK_API_BASE = @"http://www.datasciencetoolkit.org";
 
         public DSTK()
@@ -25,7 +25,7 @@ namespace dstk.net {
         {
             var svcUri = "{0}/street2coordinates/{1}".Fmt(DSTK_API_BASE, query);
 
-            var json = svcUri.GetStringFromUrl(acceptContentType: "application/json");
+            var json = svcUri.GetStringFromUrl(accept: "application/json");
 
             var alt = JsonObject.Parse(json).ConvertTo(x => new AddressLocation
             {
@@ -79,5 +79,4 @@ namespace dstk.net {
             return al;
         }
     }
-
 }
